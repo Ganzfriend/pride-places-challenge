@@ -45,11 +45,13 @@ const Posts = () => {
         const {catchPhrase} = company;
         const postInfo = {name, catchPhrase, body, title};
         return (
-          <div key={id} className={classes.post} onClick={handleClickOpen}>
-            <h5 className={classes.postTitle}>
-                {title}
-            </h5>
-            <h6>{body}</h6>
+          <div key={id} className={classes.post}>
+            <div onClick={handleClickOpen}>
+              <h5 className={classes.postTitle}>
+                  {title}
+              </h5>
+              <h6>{body}</h6>
+            </div>
             <PostModal open={open} handleClose={handleClose} postInfo={postInfo} />
           </div>
         )
