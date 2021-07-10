@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogActions,
   IconButton,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -15,23 +15,28 @@ import styles from '../styles/styles.js';
 
 const useStyles = makeStyles(styles);
 
-const PostModal = ({handleClose, open, postInfo}) => {
+var count = 1;
+
+const PostModal = ({handleClose, open, modalPost}) => {
   const classes = useStyles();
   const {
     name,
     catchPhrase,
     body,
     title
-  } = postInfo;
+  } = modalPost;
 
+  console.log(modalPost);
+  count++;
+  console.log(`i rendered ${count} times`);
   return (
     <div>
-      <Dialog onClose={handleClose} open={open}>
+      <Dialog onClose={handleClose} open={open} >
         <DialogTitle disableTypography className={classes.modal}>
             <Typography variant="h5" className={classes.authorName} gutterBottom>
               {name}
             </Typography>
-            <Typography gutterBottom>
+            <Typography gutterBottom >
               <em>"{catchPhrase}"</em>
             </Typography>
             <IconButton aria-label="close" className={classes.modalCloseButton} onClick={handleClose}>
@@ -39,8 +44,15 @@ const PostModal = ({handleClose, open, postInfo}) => {
             </IconButton>
         </DialogTitle>
         <DialogContent className={classes.dialogContent} dividers>
-          <Typography variant="h5">{title}</Typography>
-          <Typography gutterBottom>
+          <Typography
+            className={classes.modalTitle}
+            align="center"
+            variant="h5"
+            gutterBottom
+          >
+            {title}
+          </Typography>
+          <Typography align="justify" gutterBottom>
             {body}
           </Typography>
         </DialogContent>

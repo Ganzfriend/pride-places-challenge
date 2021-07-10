@@ -13,7 +13,6 @@ const styles = ({palette, breakpoint, spacing}) => (
     },
     posts: {
       width: '60vw'
-
     },
     post: {
       border: '1px solid white',
@@ -37,6 +36,10 @@ const styles = ({palette, breakpoint, spacing}) => (
     modal: {
       margin: 0,
       padding: spacing(2),
+    },
+    modalTitle: {
+      width: '80%',
+      marginBottom: spacing(3)
     },
     modalCloseButton: {
       position: 'absolute',

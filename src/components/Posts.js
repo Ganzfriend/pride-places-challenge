@@ -11,11 +11,11 @@ const Posts = () => {
 
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [modalPost, setModalPost] = useState(null);
 
-  const handleClickOpen = () => setOpen(true);
+  const handleClickPost = (post) => setModalPost(post);
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setModalPost(null);
 
   const getData = () => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -46,13 +46,15 @@ const Posts = () => {
         const postInfo = {name, catchPhrase, body, title};
         return (
           <div key={id} className={classes.post}>
-            <div onClick={handleClickOpen}>
+            <div onClick={() => handleClickPost(postInfo)}>
               <h5 className={classes.postTitle}>
                   {title}
               </h5>
               <h6>{body}</h6>
             </div>
-            <PostModal open={open} handleClose={handleClose} postInfo={postInfo} />
+            {modalPost &&
+              <PostModal open={!!modalPost} handleClose={handleClose} modalPost={modalPost} />
+            }
           </div>
         )
       })}
