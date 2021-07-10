@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  Box,
   Button,
   Dialog,
   DialogTitle,
@@ -8,6 +9,7 @@ import {
   DialogActions,
   IconButton,
   Typography,
+  Avatar
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -20,6 +22,7 @@ const PostModal = ({handleClose, open, modalPost}) => {
   const {
     name,
     catchPhrase,
+    avatar,
     body,
     title
   } = modalPost;
@@ -35,19 +38,24 @@ const PostModal = ({handleClose, open, modalPost}) => {
         }}
       >
         <DialogTitle disableTypography className={classes.modal}>
-            <Typography variant="h5" className={classes.authorName} gutterBottom>
-              {name}
-            </Typography>
-            <Typography gutterBottom >
-              <em>"{catchPhrase}"</em>
-            </Typography>
-            <IconButton aria-label="close" className={classes.modalCloseButton} onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
+          <Box className={classes.dialogTitle}>
+            <Avatar className={classes.avatar} alt={`Avatar of ${name}`} src={avatar} />
+            <Box>
+              <Typography variant="h5" className={classes.authorName} gutterBottom>
+                {name}
+              </Typography>
+              <Typography gutterBottom >
+                <em>"{catchPhrase}"</em>
+              </Typography>
+            </Box>
+          </Box>
+          <IconButton aria-label="close" className={classes.modalCloseButton} onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
         <DialogContent className={classes.dialogContent} dividers>
           <Typography
-            className={classes.modalTitle}
+            className={classes.modalPostTitle}
             align="center"
             variant="h5"
             gutterBottom

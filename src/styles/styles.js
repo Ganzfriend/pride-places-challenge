@@ -1,4 +1,4 @@
-const styles = ({palette, breakpoint, spacing}) => (
+const styles = ({palette, breakpoints, spacing}) => (
   {
     app: {
       textAlign: 'center',
@@ -37,7 +37,20 @@ const styles = ({palette, breakpoint, spacing}) => (
       margin: 0,
       padding: spacing(2),
     },
-    modalTitle: {
+    dialogTitle: {
+      display: 'flex',
+      gap: spacing(3),
+      alignItems: 'center'
+    },
+    avatar: {
+      width: spacing(6),
+      height: spacing(6),
+      [breakpoints.up('sm')]: {
+        width: spacing(10),
+        height: spacing(10)
+      }
+    },
+    modalPostTitle: {
       width: '80%',
       marginBottom: spacing(3)
     },
