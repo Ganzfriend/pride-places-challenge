@@ -1,9 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Button, Dialog, IconButton, Typography} from '@material-ui/core';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Typography
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 import styles from '../styles/styles.js';
@@ -22,28 +27,28 @@ const PostModal = ({handleClose, open, postInfo}) => {
   return (
     <div>
       <Dialog onClose={handleClose} open={open}>
-        <MuiDialogTitle disableTypography className={classes.modal}>
-          <Typography variant="h6">{title}</Typography>
+        <DialogTitle disableTypography className={classes.modal}>
+            <Typography variant="h5" className={classes.authorName} gutterBottom>
+              {name}
+            </Typography>
+            <Typography gutterBottom>
+              <em>"{catchPhrase}"</em>
+            </Typography>
             <IconButton aria-label="close" className={classes.modalCloseButton} onClick={handleClose}>
               <CloseIcon />
             </IconButton>
-        </MuiDialogTitle>
-        <MuiDialogContent className={classes.dialogContent} dividers>
+        </DialogTitle>
+        <DialogContent className={classes.dialogContent} dividers>
+          <Typography variant="h5">{title}</Typography>
           <Typography gutterBottom>
-            Author: {name}
+            {body}
           </Typography>
-          <Typography gutterBottom>
-            Catch Phrase: {catchPhrase}
-          </Typography>
-          <Typography gutterBottom>
-            Post: {body}
-          </Typography>
-        </MuiDialogContent>
-        <MuiDialogActions className={classes.dialogActions}>
+        </DialogContent>
+        <DialogActions className={classes.dialogActions}>
           <Button onClick={handleClose} color="primary">
             Return to Posts
           </Button>
-        </MuiDialogActions>
+        </DialogActions>
       </Dialog>
     </div>
   );
