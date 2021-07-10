@@ -9,6 +9,7 @@ const Posts = () => {
   const classes = useStyles();
 
   const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const getData = () => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -16,11 +17,26 @@ const Posts = () => {
       .then((json) => setPosts(json));
   };
 
-  useEffect(() => getData(), []);
+  const getUsers = () => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((json) => setUsers(json));
+  };
+
+  const matchUser = (_id) => users.find(({id}) => id === _id) || users.find(({id}) => id === Math.ceil(Math.random() * 10));
+
+  useEffect(() => {
+    getData();
+    getUsers();
+  }, []);
 
   return (
     <div className={classes.posts}>
-      {posts?.map(({body, id, title, userId}) => {
+      {!!users.length && posts?.map(({body, id, title, userId}) => {
+        // I was asked to provide the post author's catchPhrase, but what I'm seeing in the data provided by this API, it's not the author's catchPhrase, but rather the company's
+        // If this isn't the catchPhrase you were looking for, I'd be happy to go back and fix this error, or even provide alternate dummy data for the author's catchPhrase! Just let me know :)
+        const {name, company} = matchUser(userId);
+        const {catchPhrase} = company;
         return (
           <div key={id} className={classes.post}>
             <h5 className={classes.postTitle}>{title}</h5>
