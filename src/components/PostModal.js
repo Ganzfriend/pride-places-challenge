@@ -26,12 +26,14 @@ const PostModal = ({handleClose, open, modalPost}) => {
     title
   } = modalPost;
 
-  console.log(modalPost);
   count++;
-  console.log(`i rendered ${count} times`);
+  console.log('##', `i rendered ${count} times`);
   return (
     <div>
-      <Dialog onClose={handleClose} open={open} >
+      <Dialog
+        onClose={handleClose}
+        open={open}
+      >
         <DialogTitle disableTypography className={classes.modal}>
             <Typography variant="h5" className={classes.authorName} gutterBottom>
               {name}
