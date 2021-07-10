@@ -15,8 +15,6 @@ import styles from '../styles/styles.js';
 
 const useStyles = makeStyles(styles);
 
-var count = 1;
-
 const PostModal = ({handleClose, open, modalPost}) => {
   const classes = useStyles();
   const {
@@ -26,13 +24,15 @@ const PostModal = ({handleClose, open, modalPost}) => {
     title
   } = modalPost;
 
-  count++;
-  console.log('##', `i rendered ${count} times`);
   return (
     <div>
       <Dialog
         onClose={handleClose}
         open={open}
+        TransitionProps={{
+          disableStrictModeCompat: true,
+          timeout: 500
+        }}
       >
         <DialogTitle disableTypography className={classes.modal}>
             <Typography variant="h5" className={classes.authorName} gutterBottom>

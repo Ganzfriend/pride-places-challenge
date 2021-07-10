@@ -52,12 +52,12 @@ const Posts = () => {
               </h5>
               <h6>{body}</h6>
             </div>
-            {modalPost &&
-              <PostModal open={!!modalPost} handleClose={handleClose} modalPost={modalPost} />
-            }
           </div>
         )
       })}
+      {modalPost &&
+        <PostModal open={!!modalPost} handleClose={handleClose} modalPost={modalPost} />
+      }
     </div>
   );
 };
